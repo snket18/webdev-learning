@@ -1,0 +1,67 @@
+ <html>
+    <head>
+        <title>todo list!</title>
+    </head>
+    <body>
+        <input type="text">
+        <button onclick="addTodo()"> Add todo !</button>
+        <button onclick="deleteLastTodo()">Delete todo !</button>
+        <button onclick="deleteFirstTodo()">delete first todo !</button>
+        <div id="todos"></div>
+        <script>
+            let todos=[];
+            function addTodo() {
+                todos.push({
+                    title:document.querySelector("input").value
+                    
+                });
+                input.value = ""; 
+                
+                render() //useful and bahut easily kam karta hai complex dom lagane ki jarurat nahi hai
+            }
+
+            function deleteLastTodo() {
+                todos.splice(todos.length-1,1) // removes the last element from the arr
+                render()
+            }
+
+            function deleteFirstTodo() {
+                todos.splice(0,1) //removes the first element from the arr
+                render()
+            }
+
+
+
+            function createTodoComponent(todo) {
+                const div= document.createElement("div");
+                const h1 = document.createElement("h1");
+                const button = document.createElement("button");
+
+                 h1.innerHTML = todo.title; // text dikhata hai 
+        button.innerHTML = "delete";
+        button.onclick = function () {
+          todos.splice(0, 1);
+          render();
+        };
+
+              
+                div.append(h1);
+                div.append(button);
+                return div;
+
+              
+            }
+            // react
+            function render() {
+                document.querySelector("#todos").innerHTML="";
+                for (let i=0;i<todos.length;i++){
+                    const element= createTodoComponent(todos[i]);
+                    document.querySelector("#todos").appendChild(element)
+                }
+            }
+
+
+        </script>
+    </body>
+</html> 
+

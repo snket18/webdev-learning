@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    linkedIn
+    <div id="posts"></div>
+
+    <script>
+        async function getRecentPost() {
+            console.log("before sending request ");
+          // const response = await fetch("https://jsonplaceholder.typecode.com/posts/1")  {(
+          //method:"GET")}. following is another method to use abouve syntax(simple version)
+           const response = await axios.get("https://jsonplaceholder.typecode.com/posts/1")
+           const data = await respose.json();
+           console. log(data);
+           console .log("after sending request")
+           document.getElementbyId("posts").innerHTML = data.body
+        }
+
+        
+    </script>
+</body>
+</html>

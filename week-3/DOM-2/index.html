@@ -1,0 +1,108 @@
+<!-- 
+
+<html>
+
+<head>
+    <title>
+        to do app
+    </title>
+</head>
+
+<body>
+    <input type="text"></input>
+    <button onclick="addTodo()">add Todo</button>
+    <button onclick="deleteTodo()">delete todo</button>
+    <div id="todos"></div>
+    <script>
+        let todos = [];
+        function addTodo() {
+            todos.push({
+                title: document.querySelector("input").value
+            })
+
+        }
+        function deleteTodo() {
+            
+            todos.splice(todos.length - 1, 1) // removes the last element from the arr
+        }
+
+        function render() {
+            for (let i = 0; i < todos.length; i++) {
+                const todo = todos[i];
+                const div = document.createElement("div");
+                const h1 = document.createElement("h1");
+                const button = document.createElement("button");
+                button.innerHTML = "Delete"
+                h1.innerHTML = todo.title;
+                div.append(h1)
+                div.append(button)
+                document.querySelector("body").appendChild(div)
+            }
+
+        }
+    </script>
+</body>
+
+</html> -->
+
+
+<html>
+  <head>
+    <title>Todo App</title>
+  </head>
+
+  <body>
+    <input type="text" id="todoInput" placeholder="Enter todo...">
+    <button onclick="addTodo()">Add Todo</button>
+    <div id="todos"></div>
+
+    <script>
+      let todos = [];
+
+      function addTodo() {
+        const inputEl = document.querySelector("#todoInput");
+        const value = inputEl.value.trim(); // remove spaces
+
+        if (value === "") {
+          alert("Please enter a todo first!");
+          return; // stop the function
+        }
+
+        todos.push({ title: value });
+
+        inputEl.value = ""; // clear input after adding
+        render(); // update screen
+      }
+
+      function deleteTodo(index) {
+        todos.splice(index, 1); // remove that specific todo
+        render(); // update UI after deleting
+      }
+
+      function render() {
+        const todoContainer = document.querySelector("#todos");
+        todoContainer.innerHTML = ""; // clear old todos
+
+        for (let i = 0; i < todos.length; i++) {
+          const todo = todos[i];
+          const div = document.createElement("div");
+
+          const h1 = document.createElement("h1");
+          h1.innerHTML = todo.title;
+
+          const button = document.createElement("button");
+          button.innerHTML = "Delete";
+
+          // add click functionality to delete that todo
+          button.onclick = function() {
+            deleteTodo(i);
+          };
+
+          div.append(h1);
+          div.append(button);
+          todoContainer.append(div);
+        }
+      }
+    </script>
+  </body>
+</html>
